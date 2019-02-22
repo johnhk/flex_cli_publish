@@ -49,10 +49,19 @@ Explain how to run the automated tests for this system
 
 ## Versioning
 
-1.0.25
+1.0.26
 
 ## Release History
 
+* 1.0.26
+		* [BREACKING CHANGE]
+		  adfs asdfasdf adf asdfa dfdfda fadf adf a sf s
+		* [NEW FEATURES]
+		  asdf dsf dsf  adfaa  fasdfa dsfaas df asdfa s
+		* [FIXES]
+		   sdsafdf adffa d a sd f ewr erwe rwer
+		* [ADDITIONAL INFO]
+		  ewr er we rwe r
 * 1.0.25
 		* [BREACKING CHANGE]
 		  adfs asdfasdf adf asdfa dfdfda fadf adf a sf s
