@@ -253,11 +253,6 @@ function git_checkin(history: string, ver: string): void {
   simpleGit.addAnnotatedTag(ver, "version");
 
 }
-
-
-var assdaaf;
-
-
 var my_answers: any = [
   {
     "what_changes": [
