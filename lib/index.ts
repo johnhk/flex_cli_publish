@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 
-let inquirer = require('inquirer');
+let inquirer = require("inquirer");
 const fs: any = require("fs-extra");
-let exec = require('child_process').execSync;
-const path = require('path');
-const simpleGit = require('simple-git')(__dirname);
-//var os = require("os");
-//import * as simplegit from 'simple-git/promise';
-import * as os from 'os';
+let exec = require("child_process").execSync;
+const path = require("path");
+const simpleGit = require("simple-git")(__dirname);
+// var os = require("os");
+// import * as simplegit from 'simple-git/promise';
+import * as os from "os";
 
 let env_config_paths: any = { config_in: "./enviroment.config.json", config_out: "./enviroment/enviroment.ts" };
 let readme_path: string = "./readme.md";
@@ -151,7 +151,7 @@ function run_updates(all_answers: any) {
   if (all_answers[0].IsBreaking == true) {
     vtype = versiontype.major;
   } else {
-    if (all_answers[0].what_changes.includes('Feature: A new feature')) {
+    if (all_answers[0].what_changes.includes("Feature: A new feature")) {
       vtype = versiontype.minor;
     } else {
       vtype = versiontype.patch;
@@ -165,7 +165,7 @@ function run_updates(all_answers: any) {
   update_readme(ver_without_v, all_answers, history);
   git_checkin(history, ver_without_v);
 
-  console.log(JSON.stringify(all_answers, null, '  '));
+  console.log(JSON.stringify(all_answers, null, "  "));
 }
 
 function bump_package_version(vertype: versiontype): string {
@@ -185,9 +185,9 @@ function bump_package_version(vertype: versiontype): string {
       break;
   }
   let returnval: any;
-  returnval = exec('npm version ' + vtype);
+  returnval = exec("npm version " + vtype);
 
-  //console.log(returnval.toString());
+  // console.log(returnval.toString());
 
   return returnval.toString();
 }
@@ -197,22 +197,22 @@ function get_readme_formatted_text(answers: any, ver: string): string {
   let output: string = "";
   for (var propt in answers[1]) {
     switch (propt) {
-      case 'breaking_info':
+      case "breaking_info":
         output += os.EOL + "\t\t" + "* [BREACKING CHANGE]" + os.EOL + "\t\t  " +  answers[1][propt];
         break;
-      case 'feature_info':
+      case "feature_info":
         output += os.EOL + "\t\t" + "* [NEW FEATURES]" + os.EOL + "\t\t  " +  answers[1][propt];
         break;
-      case 'fix_info':
+      case "fix_info":
         output += os.EOL + "\t\t" + "* [FIXES]" + os.EOL + "\t\t  " +  answers[1][propt];
         break;
-      case 'additional_info':
+      case "additional_info":
         output += os.EOL + "\t\t" + "* [ADDITIONAL INFO]" + os.EOL + "\t\t  " +  answers[1][propt];
         break;
       default:
       // code block
     }
-    console.log(propt + ': ' + answers[1][propt]);
+    console.log(propt + ": " + answers[1][propt]);
   }
 
   return output;
@@ -223,9 +223,9 @@ function update_readme(verstring: string, answers: any, history: string) {
 
     let readme_file: string = fs.readFileSync(readme_path);
 
-    readme_file = readme_file.toString().replace(/## Versioning[\n\r]*\d*\.\d*.\d*/i, '## Versioning' + os.EOL + os.EOL + verstring);
+    readme_file = readme_file.toString().replace(/## Versioning[\n\r]*\d*\.\d*.\d*/i, "## Versioning" + os.EOL + os.EOL + verstring);
     // let history = get_readme_formatted_text(answers, verstring);
-    readme_file = readme_file.toString().replace(/## Release History[\n\r]*/i, '## Release History' + os.EOL + os.EOL + "* " + verstring + history + os.EOL);
+    readme_file = readme_file.toString().replace(/## Release History[\n\r]*/i, "## Release History" + os.EOL + os.EOL + "* " + verstring + history + os.EOL);
 
     fs.outputFileSync(readme_path, readme_file, "utf8");
   }
@@ -241,16 +241,20 @@ function update_env_files(verstring: string) {
   }
   if (fs.existsSync(env_config_paths.config_out)) {
     let env_config_file: Buffer = fs.readFileSync(env_config_paths.config_out);
-    env_config_var_in = env_config_file.toString().replace(/"version":"\d*\.\d*.\d*"/i, '"version":"' + verstring + '"');
+    env_config_var_in = env_config_file.toString().replace(/"version":"\d*\.\d*.\d*"/i, "\"version\":\"" + verstring + "\"");
     fs.outputFileSync(env_config_paths.config_out, env_config_var_in, "utf8");
   }
 
 }
 
 function git_checkin(history: string, ver: string): void {
+  // simpleGit.add("-A -- .");
+  var returnval = exec("git add -A -- .");
+  exec("git commit --quiet --allow-empty-message --file - --all");
+  exec("git tag -a v1.4 -m \"my version 1.4\"");
 
-  simpleGit.commit(history);
-  simpleGit.addAnnotatedTag(ver, "version");
+  // simpleGit.commit(history);
+  // simpleGit.addAnnotatedTag(ver, "version");
 
 }
 var my_answers: any = [
