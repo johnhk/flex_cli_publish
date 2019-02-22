@@ -1,0 +1,27 @@
+{
+  "name": "flex_cli_publish",
+  "version": "1.0.25",
+  "description": "",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node lib/index.js",
+    "watch": "tsc -w lib/index.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fs-extra": "^7.0.1",
+    "inquirer": "^6.2.2",
+    "semver": "^5.6.0",
+    "simple-git": "^1.107.0"
+  },
+  "devDependencies": {
+    "@types/inquirer": "0.0.43",
+    "@types/node": "^11.9.4",
+    "mktmp": "^1.0.1",
+    "shelljs": "^0.8.3"
+  }
+}
