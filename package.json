@@ -8,7 +8,10 @@
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node lib/index.js",
-    "watch": "tsc -w lib/index.ts"
+    "watch": "tsc -w lib/index.ts",
+    "preversion": "git add -A -- .",
+    "version": "npm run build && git add -A -- .",
+    "postversion": "git push && git push --tags && rm -rf build/temp"
   },
   "author": "",
   "license": "ISC",

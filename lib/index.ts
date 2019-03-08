@@ -252,13 +252,15 @@ function update_env_files(verstring: string): void {
 
 function git_checkin(history: string, ver: string): void {
   // simpleGit.add("-A -- .");
-  //exec("git add -A -- .");
+  var result = exec("git add -A -- .");
+  console.log(result.toString());
+
   //exec("git commit --quiet --message=\"" + history + "\" --all");
   //exec("git tag -a " + ver + " -m \"version\"");
   //let git: any = simplegit();
   //git.commit(history);
   //git.addAnnotatedTag(ver, "version");
-  let statusSummary = null;
+  /*let statusSummary = null;
   try {
      statusSummary = simplegit(__dirname).status();
   }
@@ -266,6 +268,7 @@ function git_checkin(history: string, ver: string): void {
      // handle the error
   }
 console.log(statusSummary);
+*/
   //git.status().then((status: StatusSummary) => { ... })
 }
 
@@ -309,3 +312,6 @@ function call_cli(): void {
 //call_cli();
 
 run_updates(my_answers);
+
+//git_checkin('history', '1');
+
