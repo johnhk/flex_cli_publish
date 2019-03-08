@@ -10,7 +10,8 @@
   },
   "files": ["./lib/index.ts"],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "C:\\Projects\\flex_cli_publish\\enviroment\\enviroment.ts"
   ],
   "plugins": [
     { "name": "typescript-tslint-plugin" }

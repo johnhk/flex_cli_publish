@@ -1,0 +1,10 @@
+{
+    "defaultSeverity": "error",
+    "extends": [
+        "tslint:recommended"
+    ],
+    "jsRules": {},
+    "rules": {},
+    "exclude": ["node_modules", "./enviroment/*"],
+    "rulesDirectory": []
+}

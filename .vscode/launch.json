@@ -11,6 +11,7 @@
             "program": "${workspaceFolder}/lib/index.ts",
             "preLaunchTask": "tsc: build - tsconfig.json",
             "protocol": "inspector",
+            "stopOnEntry": true,
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ],
